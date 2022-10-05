@@ -1,0 +1,10 @@
+Django>=3.0,<4.0
+psycopg2
+django-environ
+requests
+numpy
+matplotlib
+environ
+django-allauth
+django-bootstrap5
+pandas
