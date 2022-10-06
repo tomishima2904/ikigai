@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'hobby.apps.HobbyConfig',  # hobbyアプリを追加
 ]
 
 MIDDLEWARE = [
@@ -80,6 +82,7 @@ WSGI_APPLICATION = 'ikigai.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# データベースの設定
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',

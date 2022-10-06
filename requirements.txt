@@ -5,6 +5,4 @@ requests
 numpy
 matplotlib
 environ
-django-allauth
-django-bootstrap5
 pandas
