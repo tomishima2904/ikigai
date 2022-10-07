@@ -1,13 +1,19 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import generic
-from matplotlib.style import context
+from django.urls import reverse
+from .models import HobbiesTmp  # 趣味データベース
 
+import random
 class IndexView(generic.TemplateView):
     template_name = "index.html"
 
     def get(self, request, *args, **kwargs):
         print("Hello!")
-        request.session['answer'] = []  # この変数にユーザーが答えたタグを追加しようと思う
+        request.session['answers'] = []  # この変数にユーザーが答えたタグを追加しようと思う
+        request.session['questions'] = {
+            '球技': "球技は好き?",
+            '団体': "大勢が好き?",
+        }
         return super().get(request, **kwargs)
 
 
@@ -16,26 +22,47 @@ class OptionView(generic.TemplateView):
 
 
 class QuestionView(generic.TemplateView):
-    template_name = "quetion.html"
+    template_name = "question.html"
 
     def get(self, request, *args, **kwargs):
         context = {}
+        tag, question = request.session['questions'].popitem()  # ランダムに質問とそれに対応するタグをポップ
+        request.session['tag'] = tag
+        context['tag'] = tag
+        context['question'] = question
         return render(request, self.template_name, context)
 
-    def post(self, request, *args, **kwargs):  # 質問に答えた時に行う動作を記述する(富島)
+    def post(self, request, *args, **kwargs):  # 質問にYesで答えた時にタグを記憶して、次の質問を提示(富島)
         context = {}
+        # yesのボタンを押した時のみタグを記憶する
+        if "btn_yes" in request.POST:
+            request.session['answers'].append(request.session['tag'])
+        print(f"User tags are {request.session['answers']}")
+
+        # 質問がなくなった場合results.htmlに遷移
+        if len(request.session['questions'])==0:
+            print("All questions have been answered")
+            return redirect('hobby:results')
+
+        tag, question = request.session['questions'].popitem()  # ランダムに質問とそれに対応するタグをポップ
+        request.session['tag'] = tag
+        context['tag'] = tag
+        context['question'] = question
+
         return render(request, self.template_name, context)
 
 
 class ResultsView(generic.TemplateView):
     template_name = "results.html"
+    hobbies = HobbiesTmp.objects.all()
 
     def get(self, request, *args, **kwargs):
         context = {}
         """
         ここで藤田君が
-        request.session['answer']の値とデータセット上の趣味群を比較して最適な趣味を
-        下のcontext['your_hobby']に格納する
+        request.session['answers']の値を元にhobbiesから趣味を抽出する
+        そんで下のcontext['your_hobby']に格納する
         """
         context['your_hobby'] = 'hogehoge'  # congtextのyour_hobbyに診断結果を入れる
+        print(context['your_hobby'])  # ターミナル上に趣味が出力されればOK
         return render(request, self.template_name, context)
