@@ -1,5 +1,5 @@
 Django>=3.0,<4.0
-psycopg2
+mysqlclient
 django-environ
 requests
 numpy
