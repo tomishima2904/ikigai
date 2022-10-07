@@ -85,12 +85,12 @@ WSGI_APPLICATION = 'ikigai.wsgi.application'
 # データベースの設定
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'db',
-        'PORT': 5432,
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'hobby',
+        'USER': 'mysql',
+        'PASSWORD': 'mysql',
+        'HOST': 'mysql',
+        'PORT': '3306',
     }
 }
 

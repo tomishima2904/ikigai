@@ -2,10 +2,15 @@ version: "3"
 
 services:
   db:
-    image: postgres
+    image: mysql
+    restart: always
+    hostname: mysql
     environment:
-      - "POSTGRES_USER=postgres"
-      - "POSTGRES_PASSWORD=postgres"
+      MYSQL_DATABASE: hobby
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: mysql
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+
   web:
     build: .
     command: python3 manage.py runserver 0.0.0.0:8000
