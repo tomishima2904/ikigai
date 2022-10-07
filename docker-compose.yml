@@ -6,7 +6,7 @@ services:
     restart: always
     hostname: mysql
     environment:
-      MYSQL_DATABASE: hobby
+      MYSQL_DATABASE: ikigai
       MYSQL_USER: mysql
       MYSQL_PASSWORD: mysql
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'

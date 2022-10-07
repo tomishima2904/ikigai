@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'ikigai.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'hobby',
+        'NAME': 'ikigai',  # データベース名
         'USER': 'mysql',
         'PASSWORD': 'mysql',
         'HOST': 'mysql',
