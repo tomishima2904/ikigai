@@ -9,10 +9,10 @@ class IndexView(generic.TemplateView):
 
     def get(self, request, *args, **kwargs):
         print("Hello!")
-        request.session['answers'] = []  # この変数にユーザーが答えたタグを追加しようと思う
+        request.session['answers'] = {}  # この変数にユーザーが答えたタグを追加しようと思う
         request.session['questions'] = {
-            '球技': "球技は好き?",
-            '団体': "大勢が好き?",
+            'outdoor': "外は好き?",
+            'team': "大勢が好き?",
         }
         return super().get(request, **kwargs)
 
@@ -36,7 +36,9 @@ class QuestionView(generic.TemplateView):
         context = {}
         # yesのボタンを押した時のみタグを記憶する
         if "btn_yes" in request.POST:
-            request.session['answers'].append(request.session['tag'])
+            request.session['answers'][request.session['tag']] = 1
+        elif "btn_no" in request.POST:
+            request.session['answers'][request.session['tag']] = 0
         print(f"User tags are {request.session['answers']}")
 
         # 質問がなくなった場合results.htmlに遷移
