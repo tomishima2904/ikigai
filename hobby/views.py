@@ -59,17 +59,23 @@ class ResultsView(generic.TemplateView):
     hobbies = HobbiesTmp.objects.all()
     def get(self, request, *args, **kwargs):
         context = {}
+        # ユーザーの答えを取得，比較の際にリスト型を用いるためリスト型で取得
+        answers = request.session['answers']
+        answer_tags = list(answers.keys())
+        answer_list = list(answers.values())
+
         # databaseから趣味の名前を取得
         hobbies_names = self.hobbies.values('hobby')
 
         # databaseのタグ情報を取得するルーチン
-        # フィールド名を抽出
+        # フィールド名を抽出して質問順にタグを整理する
         hobbies_fields = HobbiesTmp._meta.get_fields()
         field_list = []
-        for field in hobbies_fields:
-            if not(field.name == 'id' or field.name == 'hobby'):
-                print(field.name)
-                field_list.append(field.name)
+        for field_check in answer_tags:
+            for field in hobbies_fields:
+                if field.name == field_check:
+                    field_list.append(field.name)
+
         # フィールド名から存在するタグ要素を抽出
         field_tags = []
         for field in field_list:
@@ -80,17 +86,12 @@ class ResultsView(generic.TemplateView):
             for i, tag in enumerate(hobby_tag):
                 hobbies_tag[i][j] = tag[0]
 
-        # ユーザーの答えを取得，比較の際にリスト型を用いるためリスト型で取得
-        answers = request.session['answers']
-        answeryns = list(answers.values())
-
         # タグの内容が一致した個数をカウントして辞書に格納
         result = {}
         for hobbiestag, hobbyname in zip(hobbies_tag, hobbies_names):
-            matchlist = np.logical_xor(answeryns, list(hobbiestag))
+            matchlist = np.logical_xor(answer_list, list(hobbiestag))
             matchcount = len(matchlist) - np.sum(matchlist)
             result[hobbyname['hobby']] = matchcount
-
         # 一致率の高い順に辞書をソート
         result = dict(sorted(result.items(), key=lambda i: i[1], reverse=True))
         # 一致率の高い上位三位までを抽出
