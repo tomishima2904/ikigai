@@ -1,1 +1,18 @@
 <!-- これは自由に使ってください -->
+{% load static %}
+
+
+
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>IKIGAI</title>
+    <meta name="description" content="あなたの生きがいを見つけよう">
+    <!--<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet"/>-->
+    {% block head %}{% endblock %}
+  </head>
+
+  <body>
+    {% block contents %}{% endblock %}
+  </body>
+</html>

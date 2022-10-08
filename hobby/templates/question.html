@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block contents %}
+<div class="question">
+  {{ question }}
+</div>
+<div class="btns">
+  <form method="post">
+    {% csrf_token %}
+    <button class="btn-yes" name="btn_yes" type="submit">YES</button>
+    <button class="btn-no" name="btn_no" type="submit">NO</button>
+  </form>
+
+</div>
+
+{% endblock %}
