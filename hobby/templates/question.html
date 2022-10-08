@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <!--CSSファイル　指定-->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/question.css'%}">
+    <title>IKIGAI_question</title>
+{% endblock %}
+
+{% block contents %}
+    <h1 class="IKIGAI">IKIGAI</h1>
+
+    <form method="get" action="#" class="search_container">
+        <input type="text" size="25" placeholder=" キーワード検索">
+        <input type="submit" value="&#xf002">
+    </form>
+
+
+    <!--質問-->
+    <div class="fadeIN">
+
+        <p>{{ question}}</p>
+
+    </div>
+
+
+    <div class="circle-1">
+        <t>YES</t>
+    </div>
+
+    <div class="circle-2">
+        <t>NO</t>
+    </div>
+
+
+    <!--背景アニメーション-->
+    <div class="area" >
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div >
+
+{% endblock %}
