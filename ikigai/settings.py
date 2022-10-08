@@ -176,3 +176,11 @@ LOGGING = {
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
+
+# セッションをキャッシュで保存する
+SESSION_ENGINE = "django.contrib.sessions.backends.cache"
+
+# 画面を閉じたらセッションが失効する
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+SESSION_SAVE_EVERY_REQUEST = True
