@@ -1,7 +1,47 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<!--CSSファイル　指定-->
+<link rel="stylesheet" type="text/css" href="{% static 'css/option.css'%}">
+<title>IKIGAI_option</title>
+{% endblock %}
 
 {% block contents %}
-<h1>Option画面</h1>
-<a class="button" href="{% url 'hobby:question' %}">スタート</a>
+<h1 class="IKIGAI">IKIGAI</h1>
+
+<form method="get" action="#" class="search_container">
+    <input type="text" size="25" placeholder=" キーワード検索">
+    <input type="submit" value="&#xf002">
+</form>
+
+<div class="fadeIN">
+
+    <h1>このサイトでは、
+        <br>出題される質問に答えていくことで
+        <br>あなたにおすすめの趣味を提案します。
+    </h1>
+
+</div>
+
+<a class="button" href="{% url 'hobby:question' %}">
+    <b href="#"></b>
+</a>
+
+<!--背景アニメーション-->
+<div class="area" >
+    <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+    </ul>
+</div >
 
 {% endblock %}

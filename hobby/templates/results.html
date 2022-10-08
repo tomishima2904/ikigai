@@ -1,7 +1,69 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/results.css'%}">
+    <title>IKIGAI_results</title>
+{% endblock %}
 
 {% block contents %}
-<h1>Results画面</h1>
-<a class="button" href="{% url 'hobby:index' %}">タイトルへ</a>
+<h1><a class="button" href="{% url 'hobby:index' %}">
+    IKIGAI
+</a></h1>
+
+<form method="get" action="#" class="search_container">
+    <input type="text" size="25" placeholder=" キーワード検索">
+    <input type="submit" value="&#xf002">
+</form>
+
+
+
+<!--質問-->
+<div class="fadeIN">
+
+    <p>あなたにおすすめの趣味は...
+    </p>
+
+</div>
+
+<rank1>
+    1位
+</rank1>
+<rank2>
+    2位
+</rank2>
+<rank3>
+    3位
+</rank3>
+
+
+<div class="circle-1">
+    <t>1位の趣味</t>
+</div>
+
+<div class="circle-2">
+    <t>2位の趣味</t>
+</div>
+
+<div class="circle-3">
+    <t>3位の趣味</t>
+</div>
+
+
+<!--背景アニメーション-->
+<div class="area" >
+    <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div >
 
 {% endblock %}
