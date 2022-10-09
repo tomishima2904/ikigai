@@ -11,9 +11,9 @@ class IndexView(generic.TemplateView):
         print("Hello!")
         request.session['answers'] = {}  # この変数にユーザーが答えたタグを追加しようと思う
         request.session['questions'] = {
-            'outdoor': "外は好き?",
-            'team': "大勢が好き?",
-            'cost': "お金がかかってもよい?",
+            'outdoor': "屋外で活動したい?",
+            'group': "大勢が好き?",
+            'cost': "お金に余裕がある?",
             'skill': "スキルの習得に時間かかってもよい?"
         }
         return super().get(request, **kwargs)
@@ -82,6 +82,7 @@ class ResultsView(generic.TemplateView):
         field_tags = []
         for field in field_list:
             field_tags.append(self.hobbies.values_list(field))
+
         # 抽出したタグ要素を趣味毎になるように整理
         hobbies_tag = [[0 for i in range(len(field_tags))] for j in range(len(hobbies_names))]
         for j, hobby_tag in enumerate(field_tags):
@@ -94,12 +95,16 @@ class ResultsView(generic.TemplateView):
             matchlist = np.logical_xor(answer_list, list(hobbiestag))
             matchcount = len(matchlist) - np.sum(matchlist)
             result[hobbyname['hobby']] = matchcount
+
         # 一致率の高い順に辞書をソート
         result = dict(sorted(result.items(), key=lambda i: i[1], reverse=True))
+
         # 一致率の高い上位三位までを抽出
         result = {k:result[k] for k in list(result)[:3]}
+
         # 一致率の高い趣味の名前を取得
         result = list(result.keys())
         context['your_hobby'] = result # congtextのyour_hobbyに診断結果を入れる
         print(context['your_hobby'])  # ターミナル上に趣味が出力されればOK
+
         return render(request, self.template_name, context)
