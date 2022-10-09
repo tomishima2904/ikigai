@@ -9,7 +9,7 @@
 
 ## MySQL
 - `docker-compose up -d db` でデータベース側のコンテナを立ち上げる.
-- /etc/my.cnf の文字コードを`utf8mb4`に書き換える.
+- /etc/my.cnf の文字コードを`utf8mb4`に書き換える. やり方は[こちら](https://qiita.com/decoch/items/bfa125ae45c16811536a).
 - `docker cp static/sql/hobby.sql $(docker-compose ps -q db):/tmp/hobby.sql` でローカルにあるsqlファイルをコンテナ側にコピーする.
 - `docker-compose exec db bash` でデータベース側のコンテナに入る.
 - `mysql < /tmp/hobby.sql` でコピーしたsqlファイルをmysqlに登録する.
