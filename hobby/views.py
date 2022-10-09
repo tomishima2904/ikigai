@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.urls import reverse
-from .models import HobbiesTmp  # 趣味データベース
+from .models import HobbiesTmp, Hobbies  # 趣味データベース
 
 import numpy as np
 class IndexView(generic.TemplateView):
@@ -11,8 +11,10 @@ class IndexView(generic.TemplateView):
         print("Hello!")
         request.session['answers'] = {}  # この変数にユーザーが答えたタグを追加しようと思う
         request.session['questions'] = {
-            'outdoor': "外は好き?",
-            'team': "大勢が好き?",
+            'outdoor': "屋外で活動したい?",
+            'group': "大勢が好き?",
+            'cost': "お金に余裕がある?",
+            'skill': "スキルの習得に時間かかってもよい?"
         }
         return super().get(request, **kwargs)
 
@@ -56,20 +58,22 @@ class QuestionView(generic.TemplateView):
 
 class ResultsView(generic.TemplateView):
     template_name = "results.html"
-    hobbies = HobbiesTmp.objects.all()
+    hobbies = Hobbies.objects.all()
     def get(self, request, *args, **kwargs):
         context = {}
         # ユーザーの答えを取得，比較の際にリスト型を用いるためリスト型で取得
         answers = request.session['answers']
         answer_tags = list(answers.keys())
+        # answer_tags = [tag.encode('utf-8') for tag in answer_tags]
         answer_list = list(answers.values())
 
         # databaseから趣味の名前を取得
         hobbies_names = self.hobbies.values('hobby')
+        # hobbies_names = [name.encode('utf-8') for name in hobbies_names]
 
         # databaseのタグ情報を取得するルーチン
         # フィールド名を抽出して質問順にタグを整理する
-        hobbies_fields = HobbiesTmp._meta.get_fields()
+        hobbies_fields = Hobbies._meta.get_fields()
         field_list = []
         for field_check in answer_tags:
             for field in hobbies_fields:
@@ -88,16 +92,23 @@ class ResultsView(generic.TemplateView):
 
         # タグの内容が一致した個数をカウントして辞書に格納
         result = {}
+        print(hobbies_fields)
+        # print(field_tags)
         for hobbiestag, hobbyname in zip(hobbies_tag, hobbies_names):
             matchlist = np.logical_xor(answer_list, list(hobbiestag))
             matchcount = len(matchlist) - np.sum(matchlist)
             result[hobbyname['hobby']] = matchcount
+
         # 一致率の高い順に辞書をソート
         result = dict(sorted(result.items(), key=lambda i: i[1], reverse=True))
+
         # 一致率の高い上位三位までを抽出
         result = {k:result[k] for k in list(result)[:3]}
+
         # 一致率の高い趣味の名前を取得
         result = list(result.keys())
+
+        # result = [hobby.encode('iso-8859-1').decode('utf-8') for hobby in result]
         context['your_hobby'] = result # congtextのyour_hobbyに診断結果を入れる
         print(context['your_hobby'])  # ターミナル上に趣味が出力されればOK
         return render(request, self.template_name, context)
