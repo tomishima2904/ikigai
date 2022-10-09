@@ -1,4 +1,7 @@
+CREATE DATABASE IF NOT EXISTS ikigai;
 USE ikigai;
+GRANT ALL ON ikigai.* to mysql;
+DROP TABLE IF EXISTS hobbies_tmp;
 CREATE TABLE hobbies_tmp(
     hobby varchar(30),
     outdoor integer,
