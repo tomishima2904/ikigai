@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views import generic
 from django.urls import reverse
-from .models import HobbiesTmp  # 趣味データベース
+from .models import HobbiesTmp, Hobbies  # 趣味データベース
 
 import numpy as np
 class IndexView(generic.TemplateView):
@@ -13,6 +13,8 @@ class IndexView(generic.TemplateView):
         request.session['questions'] = {
             'outdoor': "外は好き?",
             'team': "大勢が好き?",
+            'cost': "お金がかかってもよい?",
+            'skill': "スキルの習得に時間かかってもよい?"
         }
         return super().get(request, **kwargs)
 
@@ -56,7 +58,7 @@ class QuestionView(generic.TemplateView):
 
 class ResultsView(generic.TemplateView):
     template_name = "results.html"
-    hobbies = HobbiesTmp.objects.all()
+    hobbies = Hobbies.objects.all()
     def get(self, request, *args, **kwargs):
         context = {}
         # ユーザーの答えを取得，比較の際にリスト型を用いるためリスト型で取得
