@@ -5,7 +5,7 @@
 ## docker-compose
 - `docker-compose build` でコンテナを作成.
 - `docker-compose up -d db` でデータベース側のコンテナを立ち上げる.
-- `docker-compose up` でweb側のコンテナも立ち上げる. ターミナル上に`http://0.0.0.0:8000/`が出力されるのでそれをブラウザのアドレスバーに貼っつける.
+- `docker-compose up` でweb側のコンテナも立ち上げる. アドレスバーに `http://0.0.0.0:8000/` or `http://localhost:8000/` を貼っつける.
 
 ## MySQL
 - `docker-compose up -d db` でデータベース側のコンテナを立ち上げる.
