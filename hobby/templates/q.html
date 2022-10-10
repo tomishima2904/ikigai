@@ -17,6 +17,9 @@
     <form method="post">
       {% csrf_token %}
       <button class="btn-yes" name="btn_yes" type="submit">YES</button>
+      <button class="btn-partially-yes" name="btn_partially_yes" type="submit"> p-Y</button>
+      <button class="btn-neutral" name="btn_neutral" type="submit"> N</button>
+      <button class="btn-partially-no" name="btn_partially_no" type="submit"> p-N</button>
       <button class="btn-no" name="btn_no" type="submit">NO</button>
     </form>
 
