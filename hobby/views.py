@@ -24,7 +24,7 @@ class OptionView(generic.TemplateView):
 
 
 class QuestionView(generic.TemplateView):
-    template_name = "question.html"
+    template_name = "question.html"  # バックエンドテスト時は q.html にするように、それ以外は question.html で
 
     def get(self, request, *args, **kwargs):
         context = {}
@@ -38,6 +38,12 @@ class QuestionView(generic.TemplateView):
         context = {}
         # yesのボタンを押した時のみタグを記憶する
         if "btn_yes" in request.POST:
+            request.session['answers'][request.session['tag']] = 4
+        elif "btn_partially_yes" in request.POST:
+            request.session['answers'][request.session['tag']] = 3
+        elif "btn_neutral" in request.POST:
+            request.session['answers'][request.session['tag']] = 2
+        elif "btn_partially_no" in request.POST:
             request.session['answers'][request.session['tag']] = 1
         elif "btn_no" in request.POST:
             request.session['answers'][request.session['tag']] = 0
