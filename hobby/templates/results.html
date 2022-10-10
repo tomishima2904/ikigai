@@ -38,15 +38,15 @@
 
 
 <div class="circle-1">
-    <t>1位の趣味</t>
+    <t>{{ your_hobby.0 }}</t>
 </div>
 
 <div class="circle-2">
-    <t>2位の趣味</t>
+    <t>{{ your_hobby.1 }}</t>
 </div>
 
 <div class="circle-3">
-    <t>3位の趣味</t>
+    <t>{{ your_hobby.2 }}</t>
 </div>
 
 
@@ -65,5 +65,20 @@
         <li></li>
     </ul>
 </div >
+
+<!--メニュー-->
+<ul href="#" class="hList">
+    <li>
+        <div class="menu">
+            <h2 class="menu-title">IKIGAI</h2>
+            <ul class="menu-dropdown">
+                <li><a href="C:\Users\r29tk\OneDrive\デスクトップ\HTMLファイル\index.html">home</a></li>
+                <li><a href="C:\Users\r29tk\OneDrive\デスクトップ\HTMLファイル\option.html">about</a></li>
+                <li><a href="C:\Users\r29tk\OneDrive\デスクトップ\HTMLファイル\question.html">question</a></li>
+                <li><a href="C:\Users\r29tk\OneDrive\デスクトップ\HTMLファイル\results.html">result</a></li>
+            </ul>
+        </div>
+    </li>
+</ul>
 
 {% endblock %}
