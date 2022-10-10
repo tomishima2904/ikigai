@@ -10,12 +10,13 @@ class IndexView(generic.TemplateView):
     def get(self, request, *args, **kwargs):
         print("Hello!")
         request.session['answers'] = {}  # この変数にユーザーが答えたタグを追加しようと思う
-        request.session['questions'] = {
+        request.session['questions_db'] = {
             'outdoor': "屋外で活動したい?",
             'group': "大勢が好き?",
             'cost': "お金に余裕がある?",
             'skill': "スキルの習得に時間かかってもよい?"
         }
+        request.session['questions'] = request.session['questions_db'].copy()
         return super().get(request, **kwargs)
 
 
@@ -112,4 +113,5 @@ class ResultsView(generic.TemplateView):
         result = {k:result[k] for k in list(result)[:3]}
         result = list(result.keys())
         context['your_hobby'] = result # congtextのyour_hobbyに診断結果を入れる
+        request.session['questions'] = request.session['questions_db'].copy()
         return render(request, self.template_name, context)
