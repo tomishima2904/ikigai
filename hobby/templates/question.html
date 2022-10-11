@@ -26,12 +26,12 @@
 
     <form action="" method="POST" action="test.php">
         {% csrf_token %}
-        <input type="submit" class="btn_yes" value="YES">
+        <input type="submit" class="btn_yes" value="YES" name="btn_yes">
     </form>
 
     <form action="" method="POST" action="test.php">
         {% csrf_token %}
-        <input type="submit" class="btn_no" value="NO">
+        <input type="submit" class="btn_no" value="NO" name="btn_no">
     </form>
 
     <!--背景アニメーション-->
