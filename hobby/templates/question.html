@@ -8,7 +8,6 @@
 {% endblock %}
 
 {% block contents %}
-    <h1 class="IKIGAI">IKIGAI</h1>
 
     <form method="get" action="#" class="search_container">
         <input type="text" size="25" placeholder=" キーワード検索">
@@ -67,5 +66,20 @@
             <li></li>
         </ul>
     </div >
+
+    <!--メニュー-->
+    <ul href="#" class="hList">
+        <li>
+            <div class="menu">
+                <h2 class="menu-title">IKIGAI</h2>
+                <ul class="menu-dropdown">
+                    <li><a href="{% url 'hobby:index' %}">home</a></li>
+                    <li><a href="{% url 'hobby:option' %}">about</a></li>
+                    <li><a href="{% url 'hobby:question' %}">question</a></li>
+                    <li><a href="{% url 'hobby:results' %}">result</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
 
 {% endblock %}
