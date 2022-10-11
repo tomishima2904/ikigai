@@ -19,18 +19,37 @@
     <!--質問-->
     <div class="fadeIN">
 
-        <p>{{ question}}</p>
+        <p>{{ question }}</p>
 
     </div>
 
 
-    <div class="circle-1">
-        <t>YES</t>
-    </div>
+    <!--yes/no ボタン　-->
 
-    <div class="circle-2">
-        <t>NO</t>
-    </div>
+    <form action="" method="POST" action="test.php">
+        {% csrf_token %}
+        <input type="submit" class="btn_1" value="NO!!" name="btn_no">
+    </form>
+
+    <form action="" method="POST" action="test.php">
+        {% csrf_token %}
+        <input type="submit" class="btn_2" value="NO" name="btn_partially_no">
+    </form>
+
+    <form action="" method="POST" action="test.php">
+        {% csrf_token %}
+        <input type="submit" class="btn_3" value="Neutral" name="btn_neutral">
+    </form>
+
+    <form action="" method="POST" action="test.php">
+        {% csrf_token %}
+        <input type="submit" class="btn_4" value="YES" name="btn_partially_yes">
+    </form>
+
+    <form action="" method="POST" action="test.php" name="">
+        {% csrf_token %}
+        <input type="submit" class="btn_5" value="YES!!" name="btn_yes">
+    </form>
 
 
     <!--背景アニメーション-->
