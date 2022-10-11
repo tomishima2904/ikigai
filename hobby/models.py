@@ -12,7 +12,7 @@ class HobbiesTmp(models.Model):
         db_table = 'hobbies_tmp'
 
 
-# 本番用のテーブル
+# 本番用のテーブル (ver.1)
 class Hobbies(models.Model):
     hobby = models.CharField(max_length=30)
     outdoor = models.IntegerField(blank=True, null=True, default=0)
@@ -23,3 +23,16 @@ class Hobbies(models.Model):
     class Meta:
         managed = False
         db_table = 'hobbies'
+
+
+# 本番用のテーブル (ver.2)
+class HobbiesSecond(models.Model):
+    hobby = models.CharField(max_length=30)
+    outdoor = models.IntegerField(blank=True, null=True)
+    skill = models.IntegerField(blank=True, null=True)
+    group = models.IntegerField(blank=True, null=True)
+    cost = models.IntegerField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'hobbies_second'

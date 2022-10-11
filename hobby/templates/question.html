@@ -18,15 +18,37 @@
     <!--質問-->
     <div class="fadeIN">
 
-        <p>{{ question}}</p>
+        <p>{{ question }}</p>
 
     </div>
 
     <!--tes/no ボタン　-->
 
+    <!--yes/no ボタン　-->
+
     <form action="" method="POST" action="test.php">
         {% csrf_token %}
-        <input type="submit" class="btn_yes" value="YES" name="btn_yes">
+        <input type="submit" class="btn_1" value="NO!!" name="btn_no">
+    </form>
+
+    <form action="" method="POST" action="test.php">
+        {% csrf_token %}
+        <input type="submit" class="btn_2" value="NO" name="btn_partially_no">
+    </form>
+
+    <form action="" method="POST" action="test.php">
+        {% csrf_token %}
+        <input type="submit" class="btn_3" value="Neutral" name="btn_neutral">
+    </form>
+
+    <form action="" method="POST" action="test.php">
+        {% csrf_token %}
+        <input type="submit" class="btn_4" value="YES" name="btn_partially_yes">
+    </form>
+
+    <form action="" method="POST" action="test.php" name="">
+        {% csrf_token %}
+        <input type="submit" class="btn_5" value="YES!!" name="btn_yes">
     </form>
 
     <form action="" method="POST" action="test.php">
@@ -56,10 +78,10 @@
             <div class="menu">
                 <h2 class="menu-title">IKIGAI</h2>
                 <ul class="menu-dropdown">
-                    <li><a href="C:\Users\r29tk\OneDrive\デスクトップ\HTMLファイル\index.html">home</a></li>
-                    <li><a href="C:\Users\r29tk\OneDrive\デスクトップ\HTMLファイル\option.html">about</a></li>
-                    <li><a href="C:\Users\r29tk\OneDrive\デスクトップ\HTMLファイル\question.html">question</a></li>
-                    <li><a href="C:\Users\r29tk\OneDrive\デスクトップ\HTMLファイル\results.html">result</a></li>
+                    <li><a href="{% url 'hobby:index' %}">home</a></li>
+                    <li><a href="{% url 'hobby:option' %}">about</a></li>
+                    <li><a href="{% url 'hobby:question' %}">question</a></li>
+                    <li><a href="{% url 'hobby:results' %}">result</a></li>
                 </ul>
             </div>
         </li>

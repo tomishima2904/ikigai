@@ -26,13 +26,14 @@ b {
     box-sizing: border-box;
     display: block;
     position: absolute;
-    top:40%;
+    top:42%;
     right:20%;
     width: 200px;
     height: 200px;
     border: solid 6px #000;
     border-radius: 50%;
     box-shadow: 0 10px 10px rgb(0 0 0 / 16%);
+    
 
 
     animation-name: fadeInAnime;
@@ -100,11 +101,13 @@ b:hover:before {
     animation-direction:normal;
 
     position: absolute;
-    color: #fff;
+    padding:40px;
+    color: rgb(255, 255, 255);
+    background:rgba(0, 0, 0, 0.43);
     font-size: 50px;
     font-family: 'M PLUS Rounded 1c', sans-serif;
     left:10%;
-    top:45%;
+    top:40%;
     
 }
 @keyframes fadeInAnime{
@@ -152,7 +155,7 @@ b:hover:before {
     list-style: none;
     width: 20px;
     height: 20px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.4);
     animation: animate 25s linear infinite;
     bottom: -150px;
     
