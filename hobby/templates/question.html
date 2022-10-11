@@ -8,7 +8,6 @@
 {% endblock %}
 
 {% block contents %}
-    <h1 class="IKIGAI">IKIGAI</h1>
 
     <form method="get" action="#" class="search_container">
         <input type="text" size="25" placeholder=" キーワード検索">
@@ -23,15 +22,17 @@
 
     </div>
 
+    <!--tes/no ボタン　-->
 
-    <div class="circle-1">
-        <t>YES</t>
-    </div>
+    <form action="" method="POST" action="test.php">
+        {% csrf_token %}
+        <input type="submit" class="btn_yes" value="YES">
+    </form>
 
-    <div class="circle-2">
-        <t>NO</t>
-    </div>
-
+    <form action="" method="POST" action="test.php">
+        {% csrf_token %}
+        <input type="submit" class="btn_no" value="NO">
+    </form>
 
     <!--背景アニメーション-->
     <div class="area" >
@@ -48,5 +49,20 @@
             <li></li>
         </ul>
     </div >
+
+    <!--メニュー-->
+    <ul href="#" class="hList">
+        <li>
+            <div class="menu">
+                <h2 class="menu-title">IKIGAI</h2>
+                <ul class="menu-dropdown">
+                    <li><a href="C:\Users\r29tk\OneDrive\デスクトップ\HTMLファイル\index.html">home</a></li>
+                    <li><a href="C:\Users\r29tk\OneDrive\デスクトップ\HTMLファイル\option.html">about</a></li>
+                    <li><a href="C:\Users\r29tk\OneDrive\デスクトップ\HTMLファイル\question.html">question</a></li>
+                    <li><a href="C:\Users\r29tk\OneDrive\デスクトップ\HTMLファイル\results.html">result</a></li>
+                </ul>
+            </div>
+        </li>
+    </ul>
 
 {% endblock %}
