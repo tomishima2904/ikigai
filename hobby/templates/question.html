@@ -22,6 +22,7 @@
 
     </div>
 
+    <!--tes/no ボタン　-->
 
     <!--yes/no ボタン　-->
 
@@ -50,6 +51,10 @@
         <input type="submit" class="btn_5" value="YES!!" name="btn_yes">
     </form>
 
+    <form action="" method="POST" action="test.php">
+        {% csrf_token %}
+        <input type="submit" class="btn_no" value="NO" name="btn_no">
+    </form>
 
     <!--背景アニメーション-->
     <div class="area" >
