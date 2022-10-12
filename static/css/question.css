@@ -141,7 +141,7 @@ n {
   background: rgb(0, 170, 255);
   border-radius: 50% 30% 50% 40%/50%;
   position:absolute;
-  Right:25%;
+  Right:24%;
   top:25%;
 }
 
@@ -150,14 +150,14 @@ n {
   border-radius: 60% 80% 50% 70%/50% 50% 70% 40%;
   position:absolute;
   font-size:40px;
-  Right:44%;
+  Right:42%;
   top:25%;
 }
 .btn_4 {
   background: rgb(255, 123, 0);
   border-radius: 50% 30% 50% 40%/ 50% 70% 40% 60%;
   position:absolute;
-  Right:63%;
+  Right:61%;
   top:25%;
 }
 
@@ -165,7 +165,7 @@ n {
   background: rgb(255, 85, 0);
   border-radius: 60% 50% 80% 40%/50% 60% 50% 60%;
   position:absolute;
-  left:5%;
+  Right:80%;
   top:25%;
 }
 
@@ -182,8 +182,7 @@ n {
 .btn_1:hover,
 .btn_2:hover,
 .btn_3:hover,
-.btn_4:hover,
-.btn_5:hover {
+.btn_4:hover{
   letter-spacing: 5px;
   color: rgb(0, 0, 0);
   font-size:100px;
@@ -209,6 +208,10 @@ n {
 
 .btn_5:hover {
   background-color: rgb(255, 148, 95);
+  letter-spacing: 5px;
+  color: rgb(0, 0, 0);
+  font-size:80px;
+  line-height: 0;
 }
 
 
